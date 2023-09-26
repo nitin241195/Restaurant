@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Phone</fullName>
+    <active>true</active>
+    <description>Validation rule for Phone</description>
+    <errorConditionFormula>AND(
+  NOT(ISBLANK(Phone__c)),
+  NOT(REGEX(Phone__c, &quot;^(\\+91-\\d{10})|(0\\d{9})$&quot;)),
+  ISCHANGED(Phone__c)
+)</errorConditionFormula>
+    <errorMessage>Invalid Phone Number Format: Please enter a valid Indian phone number in the format +91-1234567890 or 0123456789.</errorMessage>
+</ValidationRule>

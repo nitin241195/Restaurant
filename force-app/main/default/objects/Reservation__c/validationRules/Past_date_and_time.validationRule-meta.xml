@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Past_date_and_time</fullName>
+    <active>true</active>
+    <description>Prevent User to select past date and time</description>
+    <errorConditionFormula>Booking_Time__c &lt; TIMEVALUE(NOW())</errorConditionFormula>
+    <errorMessage>Reservations cannot be made for past times on the current day. Please select a future time.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Price_of_Item</fullName>
+    <availableFields>
+        <field>Menu_Item__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </availableFields>
+    <description>In Orders object where Menu items lookup field is available.</description>
+    <displayedFields>
+        <field>Menu_Item__r.Price__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <label>Price of Item</label>
+</FieldSet>
