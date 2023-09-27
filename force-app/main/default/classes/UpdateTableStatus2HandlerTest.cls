@@ -33,6 +33,4 @@ private class UpdateTableStatus2HandlerTest {
         // Verify that the table status has been updated to 'Available'
         System.assertEquals('Available', updatedTable.Status__c, 'Table status should be Available');
     }
-
-    // Add other test methods as needed
 }
