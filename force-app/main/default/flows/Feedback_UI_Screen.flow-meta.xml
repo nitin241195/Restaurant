@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <apiVersion>58.0</apiVersion>
+    <dynamicChoiceSets>
+        <description>This variable stores the values of Rating picklist field from Feedback Object in Salesforce Org</description>
+        <name>RatingPicklistValues</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true"/>
+        <object xsi:nil="true"/>
+        <picklistField>Rating__c</picklistField>
+        <picklistObject>Feedback__c</picklistObject>
+    </dynamicChoiceSets>
+    <environments>Default</environments>
+    <interviewLabel>Feedback UI Screen {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Feedback UI Screen</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Feedback_Record</name>
+        <label>Create Feedback Record</label>
+        <locationX>163</locationX>
+        <locationY>366</locationY>
+        <connector>
+            <targetReference>Feedback_Success_Message</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Comments__c</field>
+            <value>
+                <elementReference>Commentss</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Menu_Item__c</field>
+            <value>
+                <elementReference>LookupToMenuItem.recordName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Rating__c</field>
+            <value>
+                <elementReference>Rating</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Feedback__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <screens>
+        <name>Feedback_Success_Message</name>
+        <label>Feedback Success Message</label>
+        <locationX>346</locationX>
+        <locationY>366</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>FeedbackSuccessMsg</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Your record has been successfully saved&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <description>Give your Feedback here</description>
+        <name>Reservation_Feedback</name>
+        <label>Reservation Feedback</label>
+        <locationX>163</locationX>
+        <locationY>199</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Create_Feedback_Record</targetReference>
+        </connector>
+        <fields>
+            <name>Rating</name>
+            <choiceReferences>RatingPicklistValues</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Rating</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Commentss</name>
+            <dataType>String</dataType>
+            <fieldText>Comments</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>LookupToMenuItem</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>Menu_Item__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Select Menu Item</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Feedback__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
+        <nextOrFinishButtonLabel>Save</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>37</locationX>
+        <locationY>41</locationY>
+        <connector>
+            <targetReference>Reservation_Feedback</targetReference>
+        </connector>
+    </start>
+    <status>Obsolete</status>
+    <textTemplates>
+        <name>Comments</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;{!Comments}&lt;/p&gt;</text>
+    </textTemplates>
+</Flow>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Menu_Item_Quantity</fullName>
+    <active>true</active>
+    <description>Throw an error if a user selects quantity as 0 or negative</description>
+    <errorConditionFormula>Quantity__c &lt;= 0</errorConditionFormula>
+    <errorMessage>Quantity must be greater than zero.</errorMessage>
+</ValidationRule>

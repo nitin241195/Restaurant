@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Selected_Menu_Items__c</fullName>
+    <externalId>false</externalId>
+    <label>Selected Menu Items</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Dal Makhani</fullName>
+                <default>false</default>
+                <label>Dal Makhani</label>
+            </value>
+            <value>
+                <fullName>Gulab Jamun</fullName>
+                <default>false</default>
+                <label>Gulab Jamun</label>
+            </value>
+            <value>
+                <fullName>Kheer</fullName>
+                <default>false</default>
+                <label>Kheer</label>
+            </value>
+            <value>
+                <fullName>Pakoras</fullName>
+                <default>false</default>
+                <label>Pakoras</label>
+            </value>
+            <value>
+                <fullName>Palak Paneer</fullName>
+                <default>false</default>
+                <label>Palak Paneer</label>
+            </value>
+            <value>
+                <fullName>Paneer Tikka</fullName>
+                <default>false</default>
+                <label>Paneer Tikka</label>
+            </value>
+            <value>
+                <fullName>Paneer Tikka Masala</fullName>
+                <default>false</default>
+                <label>Paneer Tikka Masala</label>
+            </value>
+            <value>
+                <fullName>Rasgulla</fullName>
+                <default>false</default>
+                <label>Rasgulla</label>
+            </value>
+            <value>
+                <fullName>Samosas</fullName>
+                <default>false</default>
+                <label>Samosas</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>
