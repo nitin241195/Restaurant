@@ -1,7 +1,25 @@
 @isTest
 private class MenuItemAvailabilityTest {
-    @isTest
-    static void testValidationRule() {
+    static Profile pro = [Select Id from Profile where Name='Demo Standard Platform User for NitinCQ'];
+    static User testUser;
+    static {
+        testUser = new User(
+            ProfileId = pro.id, 
+            Username = 'nitinnain@fmail.com',
+            Email = 'nitinnain@fmail.com',
+            FirstName='Test',
+            LastName='Nain',
+            Alias = 'tnain',
+            TimeZoneSidKey = 'GMT',
+            LocaleSidKey = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert testUser;
+    }
+    
+    static testMethod void testValidationRule() {
+        System.runAs(testUser){
         // Create a test Menu_Item__c record with Availability__c set to false
         Menu_Item__c testMenuItem = new Menu_Item__c(
             Name = 'Paneer Tikka Masala',
@@ -24,6 +42,7 @@ private class MenuItemAvailabilityTest {
         } catch (DmlException e) {
             // Verify that the expected validation error message is present in the exception
             System.assert(e.getMessage().contains('This menu item is currently unavailable. Please choose another item'));
+        }
         }
     }
 }

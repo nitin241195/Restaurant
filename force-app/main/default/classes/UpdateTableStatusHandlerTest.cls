@@ -1,8 +1,26 @@
 @isTest
 public class UpdateTableStatusHandlerTest {
+    static Profile pro = [Select Id from Profile where Name='Demo Standard Platform User for NitinCQ'];
+    static User testUser;
+    static {
+        testUser = new User(
+            ProfileId = pro.id, 
+            Username = 'nitinnain@fmail.com',
+            Email = 'nitinnain@fmail.com',
+            FirstName='Test',
+            LastName='Nain',
+            Alias = 'tnain',
+            TimeZoneSidKey = 'GMT',
+            LocaleSidKey = 'en_US',
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US'
+        );
+        insert testUser;
+    }
+    
     // Test method to cover the updateTableStatus method
-    @isTest
-    static void testUpdateTableStatusHandler() {
+    static testMethod void testUpdateTableStatusHandler() {
+        System.runAs(testUser){
         // Create test data: Table__c records and Reservation__c records
         Table__c availableTable1 = new Table__c(Status__c = 'Available');
         Table__c availableTable2 = new Table__c(Status__c = 'Available');
@@ -30,5 +48,6 @@ public class UpdateTableStatusHandlerTest {
         // Verify that the status of the booked table remains unchanged
         Table__c unchangedTable = [SELECT Id, Status__c FROM Table__c WHERE Id = :bookedTable.Id];
         System.assertEquals('Booked', unchangedTable.Status__c, 'Table status should remain Booked');
+    }
     }
 }

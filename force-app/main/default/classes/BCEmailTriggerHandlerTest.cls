@@ -1,22 +1,25 @@
 @isTest
 private class BCEmailTriggerHandlerTest {
 
-    @isTest
-    static void testSendEmailNotification() {
-        // Create a test User record
-        User testUser = new User(
-            Username = 'testuserr@example.com',
-            Alias = 'tuser',
+    static Profile pro = [Select Id from Profile where Name='Demo Standard Platform User for NitinCQ'];
+    static User testUser;
+    static {
+        testUser = new User(
+            ProfileId = pro.id, 
+            Username = 'nitinnain@fmail.com',
+            Email = 'nitinnain@fmail.com',
+            FirstName='Test',
+            LastName='Nain',
+            Alias = 'tnain',
             TimeZoneSidKey = 'GMT',
             LocaleSidKey = 'en_US',
-            EmailEncodingKey = 'ISO-8859-1',
-            ProfileId = '00e5j000000nU4E', // Replace with an actual Profile Id
-            LanguageLocaleKey = 'en_US',
-            FirstName = 'Test',
-            LastName = 'Userr',
-            Email = 'testuserr@example.com'
+            EmailEncodingKey = 'UTF-8',
+            LanguageLocaleKey = 'en_US'
         );
         insert testUser;
+    }
+    static testMethod void testSendEmailNotification() {
+        System.runAs(testUser){
 
         // Create a test Table__c record with Status__c set to "Available"
         Table__c testTable = new Table__c(
@@ -46,9 +49,10 @@ private class BCEmailTriggerHandlerTest {
         List<EmailMessage> sentEmails = [SELECT Id FROM EmailMessage];
         System.assertEquals(1, sentEmails.size(), 'Email should be sent');
     }
-
+    }
     @isTest
     static void testSendEmailNotificationErrorHandling() {
+        System.runAs(testUser){
         // Create a test Reservation__c record with an invalid email address
         Reservation__c testReservation = new Reservation__c(
             Email__c = 'validemail@example.com' // Invalid email address
@@ -66,4 +70,46 @@ private class BCEmailTriggerHandlerTest {
         List<EmailMessage> sentEmails = [SELECT Id FROM EmailMessage];
         System.assertEquals(0, sentEmails.size(), 'No email should be sent');
     }
+    }
+    
+static void testTrigger() {
+    System.runAs(testUser){
+    // Create a test User record
+    User testUser = new User(
+        Username = 'testuserr@example.com',
+        Alias = 'tuser',
+        TimeZoneSidKey = 'GMT',
+        LocaleSidKey = 'en_US',
+        EmailEncodingKey = 'ISO-8859-1',
+        ProfileId = '00e5j000000nU4E', // Replace with an actual Profile Id
+        LanguageLocaleKey = 'en_US',
+        FirstName = 'Test',
+        LastName = 'Userr',
+        Email = 'testuserr@example.com'
+    );
+    insert testUser;
+
+    // Create a test Table__c record with Status__c set to "Available"
+    Table__c testTable = new Table__c(
+        Status__c = 'Available'
+        // Add other required fields as needed
+    );
+    insert testTable;
+
+    // Create a test Reservation__c record with valid data
+    Time bookingTime = Time.newInstance(22, 0, 0, 0); // 10:00 PM
+    Reservation__c testReservation = new Reservation__c(
+        Email__c = 'validemail@example.com', // Use a valid email address
+        OwnerId = testUser.Id,// Assign the User as the owner
+        Table_No__c = testTable.Id,
+        Booking_Time__c = bookingTime // Assign the Time value
+        // Add other required fields as needed
+    );
+    insert testReservation;
+
+    // Verify that the trigger handled the email sending
+    List<EmailMessage> sentEmails = [SELECT Id FROM EmailMessage];
+    System.assertEquals(1, sentEmails.size(), 'Email should be sent');
+}
+}
 }
