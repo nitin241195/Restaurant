@@ -15,7 +15,6 @@ public class TestRecordTriggeredFlow {
         update testRecord;
         System.debug('Status after update: ' + testRecord.Status__c);
 
-
         Test.stopTest();
 
         // Retrieve the emails sent during the test
