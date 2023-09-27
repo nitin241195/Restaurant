@@ -11,7 +11,6 @@ import Reservation_Name from '@salesforce/schema/Reservation__c.Name';
 import Table_No from '@salesforce/schema/Reservation__c.Table_No__c';
 import Phone from '@salesforce/schema/Reservation__c.Phone__c';
 
-
 //import Email from '@salesforce/schema/Account__c.Email__c';
 
 export default class CreateAccountRecord extends NavigationMixin(LightningElement) {
