@@ -6,7 +6,7 @@
     <label>Part Family</label>
     <referenceTo>compliancequest__SQX_Part_Family__c</referenceTo>
     <relationshipLabel>Restaurants</relationshipLabel>
-    <relationshipName>Restaurants</relationshipName>
+    <relationshipName>CQ_NN_Restaurants</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

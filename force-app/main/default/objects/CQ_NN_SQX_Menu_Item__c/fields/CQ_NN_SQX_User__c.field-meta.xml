@@ -5,7 +5,7 @@
     <externalId>false</externalId>
     <label>User</label>
     <referenceTo>User</referenceTo>
-    <relationshipName>Menu_Items</relationshipName>
+    <relationshipName>CQ_NN_Menu_Items</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>

@@ -1,36 +1,10 @@
 @isTest
 private class CQ_NN_Test_Date {
-    static Profile pro = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
-    static User testUser;
-    static Id permSetId;
-
-    static {
-        PermissionSet existingPermSet = [SELECT Id FROM PermissionSet WHERE Name = 'CQ_NN_Common_Permission_set' LIMIT 1];
-        permSetId = existingPermSet.Id;
-
-        testUser = new User(
-            ProfileId = pro.id, 
-            Username = 'nitinnain@fmail.com',
-            Email = 'nitinnain@fmail.com',
-            FirstName = 'Test',
-            LastName = 'Nain',
-            Alias = 'tnain',
-            TimeZoneSidKey = 'GMT',
-            LocaleSidKey = 'en_US',
-            EmailEncodingKey = 'UTF-8',
-            LanguageLocaleKey = 'en_US'
-        );
-        insert testUser;
-
-        // Assign the Permission Set to the test user
-        PermissionSetAssignment psa = new PermissionSetAssignment(
-            AssigneeId = testUser.Id,
-            PermissionSetId = permSetId
-        );
-        insert psa;
-    }
-
+    
     static testMethod void testDateCondition() {
+        User testUser = CQ_NN_TestDataUtility.createTestUser();
+        CQ_NN_TestDataUtility.assignPermSetToUser(testUser);
+
         System.runAs(testUser) {
             // Create a test record with valid dates
             CQ_NN_SQX_Restaurant__c testTeacher = new CQ_NN_SQX_Restaurant__c(

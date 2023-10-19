@@ -1,37 +1,11 @@
 @isTest
 private class CQ_NN_Test_UpdateTargetDate_AL_Flow {
-    static Profile pro = [SELECT Id FROM Profile WHERE Name = 'Standard User'];
-    static User testUser;
-    static Id permSetId;
-
-    static {
-        PermissionSet existingPermSet = [SELECT Id FROM PermissionSet WHERE Name = 'CQ_NN_Common_Permission_set' LIMIT 1];
-        permSetId = existingPermSet.Id;
-
-        testUser = new User(
-            ProfileId = pro.id, 
-            Username = 'nitinnain@fmail.com',
-            Email = 'nitinnain@fmail.com',
-            FirstName = 'Test',
-            LastName = 'Nain',
-            Alias = 'tnain',
-            TimeZoneSidKey = 'GMT',
-            LocaleSidKey = 'en_US',
-            EmailEncodingKey = 'UTF-8',
-            LanguageLocaleKey = 'en_US'
-        );
-        insert testUser;
-
-        // Assign the Permission Set to the test user
-        PermissionSetAssignment psa = new PermissionSetAssignment(
-            AssigneeId = testUser.Id,
-            PermissionSetId = permSetId
-        );
-        insert psa;
-    }
 
     static testMethod void givenARestaurantRecordWhenFlowIsExecutedThenTargetDateIsSetToTenDaysAhead() {
-        System.runAs(testUser){
+        User testUser = CQ_NN_TestDataUtility.createTestUser();
+        CQ_NN_TestDataUtility.assignPermSetToUser(testUser);
+
+        System.runAs(testUser) {
             // Given a test restaurant record without the expected updates from the Flow
             CQ_NN_SQX_Restaurant__c testRestaurant = new CQ_NN_SQX_Restaurant__c(
                 Name = 'Test Restaurant'
@@ -39,7 +13,7 @@ private class CQ_NN_Test_UpdateTargetDate_AL_Flow {
             insert testRestaurant;
 
             // Set up Flow and its variables
-            Flow.Interview.CQUI_NN_Update_Target_Date flow = new Flow.Interview.CQUI_NN_Update_Target_Date(
+            Flow.Interview.CQUI_NN_Update_Target_Date_AL_Flow flow = new Flow.Interview.CQUI_NN_Update_Target_Date_AL_Flow(
                 new Map<String, Object> {
                     'InRecord' => testRestaurant
                 }
