@@ -10,7 +10,7 @@
                             <value>Edit</value>
                             <visibilityRule>
                                 <criteria>
-                                    <leftValue>{!Record.Status__c}</leftValue>
+                                    <leftValue>{!Record.CQ_NN_Status__c}</leftValue>
                                     <operator>NE</operator>
                                     <rightValue>Closed</rightValue>
                                 </criteria>
@@ -23,7 +23,7 @@
                             <value>CQ_NN_SQX_Restaurant__c.Submit</value>
                             <visibilityRule>
                                 <criteria>
-                                    <leftValue>{!Record.Status__c}</leftValue>
+                                    <leftValue>{!Record.CQ_NN_Status__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>Draft</rightValue>
                                 </criteria>
@@ -33,17 +33,17 @@
                             <value>CQ_NN_SQX_Restaurant__c.Complete</value>
                             <visibilityRule>
                                 <criteria>
-                                    <leftValue>{!Record.Status__c}</leftValue>
+                                    <leftValue>{!Record.CQ_NN_Status__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>In Progress</rightValue>
                                 </criteria>
                             </visibilityRule>
                         </valueListItems>
                         <valueListItems>
-                            <value>CQ_NN_SQX_Restaurant__c.Close</value>
+                            <value>CQ_NN_SQX_Restaurant__c.CQ_NN_Close</value>
                             <visibilityRule>
                                 <criteria>
-                                    <leftValue>{!Record.Status__c}</leftValue>
+                                    <leftValue>{!Record.CQ_NN_Status__c}</leftValue>
                                     <operator>EQUAL</operator>
                                     <rightValue>Complete</rightValue>
                                 </criteria>

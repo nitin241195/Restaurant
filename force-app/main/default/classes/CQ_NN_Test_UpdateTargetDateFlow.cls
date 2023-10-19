@@ -30,33 +30,29 @@ private class CQ_NN_Test_UpdateTargetDateFlow {
         insert psa;
     }
 
-    static testMethod void testAutoLaunchedFlow() {
+    static testMethod void givenARestaurantRecordWhenFlowIsExecutedThenTargetDateIsSetToTenDaysAhead() {
         System.runAs(testUser){
-        // 1. Insert a test record without the expected updates from the Flow
-        CQ_NN_SQX_Restaurant__c testRestaurant = new CQ_NN_SQX_Restaurant__c(
-            Name = 'Test Restaurant'
-        );
-        insert testRestaurant;
-        
-        // Set up Flow and its variables
-        Flow.Interview.CQUI_NN_Update_Target_Date flow = new Flow.Interview.CQUI_NN_Update_Target_Date(
-            new Map<String, Object> {
-                'InRecord' => testRestaurant
-            }
-        );
-        
-        Test.startTest();
-        
-        // Execute the flow
-        flow.start();
-        
-        Test.stopTest();
+            // Given a test restaurant record without the expected updates from the Flow
+            CQ_NN_SQX_Restaurant__c testRestaurant = new CQ_NN_SQX_Restaurant__c(
+                Name = 'Test Restaurant'
+            );
+            insert testRestaurant;
 
-        // Retrieve the OutRecord variable from the flow
-        CQ_NN_SQX_Restaurant__c outRestaurant = (CQ_NN_SQX_Restaurant__c)flow.getVariableValue('OutRecord');
-        
-        // Validate the expected changes on OutRecord
-        System.assertEquals(Date.today().addDays(10), outRestaurant.CQ_NN_Target_Date__c, 'Target date on OutRecord should be 10 days ahead of the current date.');
+            // Set up Flow and its variables
+            Flow.Interview.CQUI_NN_Update_Target_Date flow = new Flow.Interview.CQUI_NN_Update_Target_Date(
+                new Map<String, Object> {
+                    'InRecord' => testRestaurant
+                }
+            );
+
+            // When the flow is executed
+            Test.startTest();
+            flow.start();
+            Test.stopTest();
+
+            // Then validate the expected changes on OutRecord
+            CQ_NN_SQX_Restaurant__c outRestaurant = (CQ_NN_SQX_Restaurant__c)flow.getVariableValue('OutRecord');
+            System.assertEquals(Date.today().addDays(10), outRestaurant.CQ_NN_Target_Date__c, 'Target date on OutRecord should be 10 days ahead of the current date.');
         }
     }
 }

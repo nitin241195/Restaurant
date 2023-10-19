@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CQ_NN_SQX_Menu_Item__c.CQ_NN_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CQ_NN_SQX_Menu_Item__c.CQ_NN_Drink_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CQ_NN_SQX_Menu_Item__c.CQ_NN_Item_Image__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CQ_NN_SQX_Menu_Item__c.CQ_NN_SQX_Restaurant__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CQ_NN_SQX_Menu_Item__c.CQ_NN_Title__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -67,22 +67,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CQ_NN_SQX_Restaurant__c.CQ_NN_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CQ_NN_SQX_Restaurant__c.CQ_NN_Target_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CQ_NN_SQX_Restaurant__c.CQ_NN_Upload_File__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CQ_NN_SQX_Restaurant__c.SQ_NN_Title__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CQ_NN_SQX_Restaurant__c.Status__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>CQ_NN_SQX_Restaurant__c.Upload_File__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
