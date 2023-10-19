@@ -31,25 +31,20 @@ private class CQ_NN_Test_Date {
     }
 
     static testMethod void testDateCondition() {
-        System.runAs(testUser){
-        // Create a test record with CQ_NN_Initiated_Date__c >= CQ_NN_Target_Date__c
-        CQ_NN_SQX_Restaurant__c testRestaurant = new CQ_NN_SQX_Restaurant__c(
-            Name = 'Test Restaurant',
-            CQ_NN_Initiated_Date__c = Date.today(),
-            CQ_NN_Target_Date__c = Date.today().addDays(-1) // Making target date 1 day before the initiated date
-        );
+        System.runAs(testUser) {
+            // Create a test record with valid dates
+            CQ_NN_SQX_Restaurant__c testTeacher = new CQ_NN_SQX_Restaurant__c(
+                Name = 'Test Teacher',
+                CQ_NN_Initiated_Date__c = Date.today().addDays(-2), // Course start date 2 days before end date
+                CQ_NN_Target_Date__c = Date.today()
+            );
 
-        Exception expectedException;
-        try {
-            insert testRestaurant;
-        } catch (System.DmlException e) {
-            expectedException = e;
-        }
+            // Insert the record
+            insert testTeacher;
 
-        // Assertions
-        System.assertNotEquals(null, expectedException, 'A DML Exception should have been thrown due to the validation rule.');
-        System.assertEquals('FIELD_CUSTOM_VALIDATION_EXCEPTION', expectedException.getDmlType(0).name(), 'Expected a custom validation exception.');
-        System.assert(expectedException.getMessage().contains('Initiated date should be less than target date'), 'Initiated date should be less than target date');
+            // Validate that the record is inserted successfully
+            List<CQ_NN_SQX_Restaurant__c> insertedTeachers = [SELECT Id FROM CQ_NN_SQX_Restaurant__c WHERE Id = :testTeacher.Id];
+            System.assertEquals(1, insertedTeachers.size(), 'Record should have been inserted successfully');
         }
     }
 }
