@@ -30,6 +30,7 @@
             <targetReference>Assignment_to_outrecord</targetReference>
         </connector>
     </assignments>
+    <description>To auto populate the Target date in field</description>
     <environments>Default</environments>
     <formulas>
         <name>SetDate</name>
@@ -64,7 +65,7 @@
             <targetReference>update_date</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>InRecord</name>
         <dataType>SObject</dataType>
