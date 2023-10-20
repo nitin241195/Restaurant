@@ -1,9 +1,15 @@
 @isTest
 private class CQ_NN_Test_RestaurantHanler {
     
-    static testMethod void testHandleBeforeUpdate() {
+    @testSetup
+    static void setupTestData() {
+        // Create a test user and assign permission set
         User testUser = CQ_NN_TestDataUtility.createTestUser();
         CQ_NN_TestDataUtility.assignPermSetToUser(testUser);
+    }
+    
+    static testMethod void testHandleBeforeUpdate() {
+        User testUser = [SELECT Id, Username FROM User WHERE Username LIKE 'nitinnain%@fmail.com' LIMIT 1];
 
         System.runAs(testUser) {
         // Prepare test data

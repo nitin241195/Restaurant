@@ -1,10 +1,16 @@
 @isTest
 private class CQ_NN_Test_UpdateTargetDate_AL_Flow {
 
-    static testMethod void givenARestaurantRecordWhenFlowIsExecutedThenTargetDateIsSetToTenDaysAhead() {
+    @testSetup
+    static void setupTestData() {
+        // Create a test user and assign permission set
         User testUser = CQ_NN_TestDataUtility.createTestUser();
         CQ_NN_TestDataUtility.assignPermSetToUser(testUser);
-
+    }
+    
+    static testMethod void givenARestaurantRecordWhenFlowIsExecutedThenTargetDateIsSetToTenDaysAhead() {
+        User testUser = [SELECT Id, Username FROM User WHERE Username LIKE 'nitinnain%@fmail.com' LIMIT 1];
+        
         System.runAs(testUser) {
             // Given a test restaurant record without the expected updates from the Flow
             CQ_NN_SQX_Restaurant__c testRestaurant = new CQ_NN_SQX_Restaurant__c(

@@ -1,5 +1,5 @@
 @isTest
-public class CQUI_NN_Filter_Products_By_PF_Test {
+public class CQUI_NN_Test_Filter_Products_By_PF {
     
     @testSetup
     static void setupTestData() {
