@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CQ_NN_Date</fullName>
+    <active>true</active>
+    <description>Validation rule for date in which Initiated Date should not be equal to or greater than Target Date.</description>
+    <errorConditionFormula>CQ_NN_Initiated_Date__c &gt;=  CQ_NN_Target_Date__c</errorConditionFormula>
+    <errorMessage>Initiated date should be less than target date</errorMessage>
+</ValidationRule>
